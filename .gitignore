@@ -1,0 +1,30 @@
+# Секреты и ключи
+*.key
+*.pem
+.passwd-s3fs
+.env
+.env.*
+
+# DVC
+.dvc/config.local
+.dvc/tmp/
+.dvc/cache/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Система
+.DS_Store
+Thumbs.db
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+.terraform.lock.hcl
