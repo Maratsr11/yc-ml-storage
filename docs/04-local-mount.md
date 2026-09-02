@@ -1,19 +1,12 @@
-# 04. Локальное монтирование бакета
-
+04. Локальное монтирование бакета
 Есть несколько способов смонтировать бакет Object Storage как обычную папку на компьютере.
-
-## Вариант 1: s3fs (самый простой)
-
-### Установка
-
-**Ubuntu / Debian:**
-```bash
-sudo apt update
+Вариант 1: s3fs (самый простой)
+Установка
+Ubuntu / Debian:
+Bashsudo apt update
 sudo apt install s3fs
-
 macOS:
-brew install s3fs
-
+Bashbrew install s3fs
 Настройка ключей
 Bashecho "KEY_ID:SECRET_KEY" > ~/.passwd-s3fs
 chmod 600 ~/.passwd-s3fs
@@ -28,11 +21,24 @@ s3fs <имя-бакета> ~/mnt/ml-artifacts \
 Размонтирование
 Bashfusermount -u ~/mnt/ml-artifacts
 Вариант 2: rclone (кроссплатформенный)
+Настройка
 Bashrclone config
-Выберите тип s3, provider Other, endpoint: https://storage.yandexcloud.net
-Затем:
+При настройке укажите:
+
+Тип хранилища: s3
+Provider: Other
+Endpoint: https://storage.yandexcloud.net
+Access Key ID и Secret Access Key — от вашего сервисного аккаунта
+
+Монтирование
 Bashrclone mount yc:<имя-бакета> ~/mnt/ml-artifacts --vfs-cache-mode full
 Вариант 3: GeeseFS (рекомендуется Yandex)
-Лучшая производительность.
+GeeseFS обычно работает быстрее и стабильнее, чем s3fs.
+Скачать можно здесь:
 
-Скачать можно здесь: yandex-cloud/geesefs
+https://github.com/yandex-cloud/geesefs
+После скачивания бинарника пример команды монтирования:
+Bash./geesefs \
+  --endpoint https://storage.yandexcloud.net \
+  <имя-бакета> \
+  ~/mnt/ml-artifacts
