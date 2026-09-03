@@ -42,10 +42,22 @@
 
 ### 4. Подключите DVC
 
-```bash
-dvc remote add -d yandex-s3 s3://<имя-бакета>/dvc-storage
-dvc remote modify yandex-s3 endpointurl https://storage.yandexcloud.net
+* [Настройка DVC](docs/05-dvc-setup.md)
 
-# Ключи храните локально
-dvc remote modify --local yandex-s3 access_key_id <KEY_ID>
-dvc remote modify --local yandex-s3 secret_access_key <SECRET_KEY>
+
+## Рекомендуемая структура в бакете
+
+```text
+your-bucket/
+├── dvc-storage/       # кэш DVC
+├── datasets/          # датасеты
+├── models/            # модели
+└── experiments/       # артефакты экспериментов
+```
+
+## Полезные ссылки
+
+* [Документация Object Storage](https://yandex.cloud/docs/storage/)
+* [S3 Connector в DataSphere](https://yandex.cloud/docs/datasphere/operations/data/s3-connectors)
+* [DVC + S3-compatible storage](https://dvc.org/doc/user-guide/data-management/remote-storage/amazon-s3)
+* [Калькулятор цен Yandex Cloud](https://yandex.cloud/prices)
